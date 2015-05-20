@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
+var formulario = $("#formulario");
 
 $.ajax({
-        url: "webservice/valida_user.php?action='login'",
+        url: "webservice/ldap.php?action='login'",
         type: "POST",
         data: formulario.serialize(),
         success : function(data){
