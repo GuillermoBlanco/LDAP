@@ -9,15 +9,15 @@ $response;
 
 
         
-//$ldap_user="user1@toca.cat";
-//$ldap_pass="Platano123$";
-console.log($ds);
+$ldap_user="user1@toca.cat";
+$ldap_pass="Platano123$";
+
 if ($ds) { 
-    console.log($_GET["action"]);
+
     switch ($_GET["action"]) {
         case "login":
-            $ldap_user = $_POST["user"];
-            $ldap_pass = $_POST["password"];
+//            $ldap_user = $_POST["user"];
+//            $ldap_pass = $_POST["password"];
             
             $r=ldap_bind($ds, $ldap_user, $ldap_pass);
             if($r){
@@ -25,6 +25,7 @@ if ($ds) {
                 $_SESSION['password']=$ldap_pass;
             }
             $response=$r;
+
             break;
         case "searchGroups":
             $ldap_user = $_SESSION['user'];
@@ -62,5 +63,5 @@ if ($ds) {
     $response= "Error";
 }
 
-return json_encode($response);
+echo json_encode($response);
 ?>
