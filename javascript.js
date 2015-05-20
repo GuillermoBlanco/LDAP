@@ -6,7 +6,7 @@
 
 
 $.ajax({
-        url: "webservice/valida_user.php",
+        url: "webservice/valida_user.php?action='login'",
         type: "POST",
         data: formulario.serialize(),
         success : function(data){
