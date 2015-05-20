@@ -1,8 +1,9 @@
 <?php
-$host="52.24.210.244:389";
-
-$ds=ldap_connect($host);
+$host="52.24.210.244";
+$puerto = "389";
+$ds=ldap_connect($host,$puerto);
 ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+ldap_set_option($ds, LDAP_OPT_REFERRALS,0);
 
 $response;
 
@@ -10,9 +11,9 @@ $response;
         
 //$ldap_user="user1@toca.cat";
 //$ldap_pass="Platano123$";
-
+console.log($ds);
 if ($ds) { 
-
+    console.log($_GET["action"]);
     switch ($_GET["action"]) {
         case "login":
             $ldap_user = $_POST["user"];
