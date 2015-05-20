@@ -19,30 +19,35 @@ if ($ds) {
             $ldap_pass = $_POST["password"];
             
             $r=ldap_bind($ds, $ldap_user, $ldap_pass);
-            
+            if($r){
+                $_SESSION['user']=$ldap_user;
+                $_SESSION['password']=$ldap_pass;
+            }
             $response=$r;
             break;
-        case "search":
-            $ldap_user = $_POST["user"];
-            $ldap_pass = $_POST["password"];
+        case "searchGroups":
+            $ldap_user = $_SESSION['user'];
+            $ldap_pass = $_SESSION['password'];
             
             $r=ldap_bind($ds, $ldap_user, $ldap_pass);
             
             $sr=ldap_search($ds, "DC=toca,DC=cat", "objectClass=group");  
             
-            echo "El resultado de la búsqueda es " . $sr . "<br />";
-
-            echo "El número de entradas devueltas es " . ldap_count_entries($ds, $sr) . "<br />";
-
-            echo "Obteniendo entradas ...<p>";
-            $info = ldap_get_entries($ds, $sr);
-            echo "Los datos para " . $info["count"] . " objetos devueltos:<p>";
-
-            for ($i=0; $i<$info["count"]; $i++) {
-                echo "El dn es: " . $info[$i]["dn"] . "<br />";
-                echo "El mo es: " . $info[$i]["memberof"][1] . "<br />";
-                echo "La primera entrada cn es: " . $info[$i]["cn"][0] . "<br /><hr />";
+            if ($sr){
+                
+                
+//            echo "El número de entradas devueltas es " . ldap_count_entries($ds, $sr) . "<br />";
+                $info = ldap_get_entries($ds, $sr);
+//                for ($i=0; $i<$info["count"]; $i++) {
+//                    echo "El dn es: " . $info[$i]["dn"] . "<br />";
+//                    echo "El mo es: " . $info[$i]["memberof"][1] . "<br />";
+//                    echo "La primera entrada cn es: " . $info[$i]["cn"][0] . "<br /><hr />";
+//                }
+//                $response=  array();
+//                array_push($response, $info[$i]);
             }
+            $response=$info;
+            
             break;
 
         default:
@@ -56,5 +61,5 @@ if ($ds) {
     $response= "Error";
 }
 
-return $response;
+return json_encode($response);
 ?>
