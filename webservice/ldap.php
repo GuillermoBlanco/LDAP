@@ -28,8 +28,8 @@ if ($ds) {
 
             break;
         case "searchGroups":
-            $ldap_user = $_SESSION['user'];
-            $ldap_pass = $_SESSION['password'];
+//            $ldap_user = $_SESSION['user'];
+//            $ldap_pass = $_SESSION['password'];
             
             $r=ldap_bind($ds, $ldap_user, $ldap_pass);
             
@@ -47,9 +47,9 @@ if ($ds) {
 //                }
 //                $response=  array();
 //                array_push($response, $info[$i]);
+                $response=$info;
             }
-            $response=$info;
-            
+            $response="PIPO";
             break;
 
         default:

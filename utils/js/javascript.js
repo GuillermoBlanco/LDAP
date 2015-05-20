@@ -15,8 +15,15 @@ $(function(){
         var datos = formulario.serialize();
         $.post('webservice/ldap.php?action=login',datos, function(respuesta){        
             
-            alert(respuesta);
-
+            if (respuesta) {
+                datos = "";
+                $.post('webservice/ldap.php?action=searchGroups',datos, function(respuesta2){        
+                    alert(respuesta2);
+            
+            
+                },"json");
+            }
+            
         },"json");
        
    });
