@@ -50,3 +50,7 @@ Por último, LDAP incluye servicios de integridad y confidencialidad de los dato
 
 
 Extraido de: http://somebooks.es/?p=3444
+
+
+Ejemplos de filtros por atributos (LDAP Syntax Filters): http://social.technet.microsoft.com/wiki/contents/articles/5392.active-directory-ldap-syntax-filters.aspx
+
