@@ -18,9 +18,13 @@ $(function(){
             if (respuesta) {
                 datos = "";
                 $.post('webservice/ldap.php?action=searchGroups',datos, function(respuesta2){        
-                    alert(respuesta2);
-            
-            
+//                    var texto = "";
+//                    $.each(respuesta2, function () { 
+//                        texto += this; 
+//                    });
+//                    
+//                    alert(texto);
+                alert(respuesta2);
                 },"json");
             }
             
